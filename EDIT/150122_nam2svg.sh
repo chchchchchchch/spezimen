@@ -53,7 +53,8 @@
                     grep -v space  | #
                     cut -d " " -f 1`
    do
-       CHARACTER=`echo -n $CHARACTER | recode u2/x2..h0`
+       CHARACTER=`echo -n $CHARACTER | #
+                  recode u2/x2..h0`
        echo "$CHARACTER" >> $DUMP
   done
   
