@@ -49,13 +49,12 @@
   e '<rect id="rect" width="760" height="2360" x="20" y="20" />'
   e '</flowRegion><flowPara id="flowPara">'
 
-  for CHARACTER in `cat $CHARLIST | cut -d " " -f 1`
+  for CHARACTER in `cat $CHARLIST  | #
+                    grep -v space  | #
+                    cut -d " " -f 1`
    do
        CHARACTER=`echo -n $CHARACTER | recode u2/x2..h0`
-       if [ `echo $CHARACTER | sed 's/ //g' | wc -c` -gt 1 ]; then
-             echo "$CHARACTER"
-             echo "$CHARACTER" >> $DUMP
-       fi
+       echo "$CHARACTER" >> $DUMP
   done
   
   e '</flowPara></flowRoot>'
